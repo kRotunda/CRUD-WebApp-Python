@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Create{% endblock %}
+{% block content %}
+<h1>Create</h1>
+{% if lCheck %}
+        {% if mCheck %}
+                <p>Successfully added new car to users database!</p>
+        {% endif %}
+        {% if updateCar %}
+                <form action="/update/{{id}}" method="post">
+                        <label> Make: </label>
+                        <input type="text" name="make" value={{make}}><br>
+                        <label> Model: </label>
+                        <input type="text" name="model" value={{model}}><br>
+                        <label> Year: </label>
+                        <input type="number" name="year" value={{year}}><br>
+                        <label> color: </label>
+                        <input type="text" name="color" value={{color}}><br>
+                <input type="submit" value="Update Car">
+        </form>
+        {% else %}
+        <form action="/create" method="post">
+                <label> Make: </label>
+                <input type="text" name="make" id="make"><br>
+                <label> Model: </label>
+                <input type="text" name="model" id="model"><br>
+                <label> Year: </label>
+                <input type="number" name="year" id="year"><br>
+                <label> color: </label>
+                <input type="text" name="color" id="color"><br>
+                <input type="submit" value="Create Car">
+        </form>
+        <button onclick="getRan()">Make Random Car!</button>
+        {% endif %}
+{% else %}
+        {% if uCheck %}
+                <p>ERROR: username entered is already in use</p>
+        {% endif %}
+        <form action="/create" method="post">
+                <label> Name: </label>
+                <input type="text" name="name"><br>
+                <label> Age: </label>
+                <input type="number" name="age"><br>
+                <label> Username: </label>
+                <input type="text" name="username"><br>
+                <label> Password: </label>
+                <input type="password" name="password"><br>
+                <input type="submit" value="Create Account">
+        </form>
+{% endif %}
+{% endblock %}

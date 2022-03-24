@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}View{% endblock %}
+{% block content %}
+{% if users %}
+    <h1>All Users</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        {% for row in users %}
+            <tr>
+                <td>{{row.name}}</td>
+                <td>{{row.age}}</td>
+                <td>{{row.username}}</td>
+                <td>{{row.password}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% if cars %}
+    <h1>Your Cars</h1>
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+            </tr>
+            {% for row in cars %}
+                <tr>
+                    <td>{{row.make}}</td>
+                    <td>{{row.model}}</td>
+                    <td>{{row.year}}</td>
+                    <td>{{row.color}}</td>
+                    <td class="button">
+                        <form action="/update/{{row.id}}">
+                            <input type="submit" value="update" class="hide">
+                        </form>
+                    </td>
+                    <td class="button">
+                        <form action="/delete/{{row.id}}" method="post">
+                            <input type="submit" value="delete" class="hide">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endif %}
+{% if allCar %}
+    <h1>All Cars</h1>
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Owner Name</th>
+            </tr>
+            {% for row in allCar %}
+                <tr>
+                    <td>{{row.make}}</td>
+                    <td>{{row.model}}</td>
+                    <td>{{row.year}}</td>
+                    <td>{{row.color}}</td>
+                    <td>{{row.user.name}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endif %}
+{% endblock %}

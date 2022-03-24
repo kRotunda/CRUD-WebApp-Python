@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Update Password{% endblock %}
+{% block content %}
+<h1>Update Password</h1>
+{% if pCheck %}
+        <p>ERROR: password entered doesn't match user info</p>
+{% endif %}
+<form action="/update" method="post">
+        <label> Current Password: </label>
+        <input type="password" name="oldPassword"><br>
+        <label> New Password: </label>
+        <input type="password" name="newPassword"><br>
+        <input type="submit" value="Update">
+</form>
+{% endblock %}
